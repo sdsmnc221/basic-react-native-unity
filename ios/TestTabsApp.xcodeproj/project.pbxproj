@@ -18,6 +18,8 @@
 		2DCD954D1E0B4F2C00145EB5 /* TestTabsAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* TestTabsAppTests.m */; };
 		34840CE7530D0EC151EAA8D9 /* libPods-TestTabsAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0027A2D79E86EF796B4B51D8 /* libPods-TestTabsAppTests.a */; };
 		479434187ECBECFACC960664 /* libPods-TestTabsApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BD774012ED9E7044F94AA8 /* libPods-TestTabsApp.a */; };
+		630BFBD823F30B7B004AE99C /* UnityFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 630BFBD723F30B7B004AE99C /* UnityFramework.framework */; };
+		630BFBD923F30B7B004AE99C /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 630BFBD723F30B7B004AE99C /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		636B64D023EDD86200C0995F /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 636B64C823EDD6F300C0995F /* AntDesign.ttf */; };
 		636B64D123EDD86200C0995F /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 636B64C323EDD6F300C0995F /* Entypo.ttf */; };
 		636B64D223EDD86200C0995F /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 636B64CC23EDD6F400C0995F /* EvilIcons.ttf */; };
@@ -55,6 +57,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		630BFBDA23F30B7B004AE99C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				630BFBD923F30B7B004AE99C /* UnityFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0027A2D79E86EF796B4B51D8 /* libPods-TestTabsAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TestTabsAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
@@ -81,6 +97,8 @@
 		5E0D85CDD48C4225B5256B58 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		5E876C965736D0A37E787E6F /* Pods-TestTabsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestTabsApp.debug.xcconfig"; path = "Target Support Files/Pods-TestTabsApp/Pods-TestTabsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		6237EDF0746AE9736032B747 /* Pods-TestTabsApp-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestTabsApp-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-TestTabsApp-tvOSTests/Pods-TestTabsApp-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		630BFBCB23F30478004AE99C /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		630BFBD723F30B7B004AE99C /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		636B64B123EDD5C600C0995F /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		636B64C023EDD6F300C0995F /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		636B64C123EDD6F300C0995F /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
@@ -132,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				479434187ECBECFACC960664 /* libPods-TestTabsApp.a in Frameworks */,
+				630BFBD823F30B7B004AE99C /* UnityFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +208,8 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				630BFBD723F30B7B004AE99C /* UnityFramework.framework */,
+				630BFBCB23F30478004AE99C /* UnityFramework.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				46BD774012ED9E7044F94AA8 /* libPods-TestTabsApp.a */,
@@ -323,6 +344,7 @@
 			buildPhases = (
 				C2ED93A136D460E82609120C /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
+				630BFBDA23F30B7B004AE99C /* Embed Frameworks */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
