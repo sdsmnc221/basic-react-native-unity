@@ -11,8 +11,6 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 import configs from '../../configs/';
 
-import UnityView, { UnityModule } from '@asmadsen/react-native-unity-view';
-
 const UnityScreen = ({navigation}) => {
   navigation.setOptions({
     unmountOnBlur: true
@@ -28,15 +26,16 @@ const UnityScreen = ({navigation}) => {
   };
 
   const bridge = (data, cb = null) => {
-    if (!cb) cb = (data) => {
-      console.log(data);
-      if (data) setUnityMessageCb(JSON.stringify(data));
-    }
-    UnityModule.postMessageToUnityManager({
-      name: data,
-      data: data,
-      callBack: cb
-  });
+  //   if (!cb) cb = (data) => {
+  //     console.log(data);
+  //     if (data) setUnityMessageCb(JSON.stringify(data));
+  //   }
+  //   UnityModule.postMessageToUnityManager({
+  //     name: data,
+  //     data: data,
+  //     callBack: cb
+  // });
+    console.log(data);
   }
 
   useEffect(() => {
@@ -45,16 +44,16 @@ const UnityScreen = ({navigation}) => {
     if (isFocused) bridge('OnStart');
   }, [])
 
-  const createUnityView = () => <UnityView
-      style={styles.unity}
-      onMessage={onUnityMessage}
-      onUnityMessage={onUnityMessage}
-    />
+  // const createUnityView = () => <UnityView
+  //     style={styles.unity}
+  //     onMessage={onUnityMessage}
+  //     onUnityMessage={onUnityMessage}
+  //   />
 
   return (
       <View style={styles.body}>
         <Text style={styles.bold}>Unity</Text>
-        {createUnityView()}
+        {/* {createUnityView()} */}
         <View style={styles.log}>
           <Text style={styles.center}>Bridge Log: {unityMessage || 'none'}</Text>
           <Text style={styles.center}>Unity Message Callback: {unityMessageCb || 'none'}</Text>

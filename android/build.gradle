@@ -34,8 +34,5 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
-        flatDir {
-            dirs "${project(':UnityExport').projectDir}/libs"
-        }
     }
 }

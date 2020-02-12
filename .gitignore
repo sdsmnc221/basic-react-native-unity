@@ -59,6 +59,6 @@ buck-out/
 /ios/Pods/
 
 # Unity
-/unity/
-/ios/UnityExport/
-/android/UnityExport/
+#/unity/
+#/ios/UnityExport/
+#/android/UnityExport/
