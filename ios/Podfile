@@ -37,8 +37,6 @@ target 'TestTabsApp' do
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
 
-  pod 'react-native-unity-view', :path => '../node_modules/@asmadsen/react-native-unity-view'
-
   target 'TestTabsAppTests' do
     inherit! :search_paths
     # Pods for testing
