@@ -1,2 +1,2 @@
-# basic-react-native-unity
-Basic React Native app with Tabs navigation and Integration of Unity View
+# basic-react-native
+Basic React Native app with Tabs navigation (Unity stripped).
