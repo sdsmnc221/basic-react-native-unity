@@ -50,7 +50,7 @@ $ react-native link @asmadsen/react-native-unity-view //just in case, to make su
 ```
 $ cd ios
 $ cd pod install
-$c cd ..
+$ cd ..
 ```
 
 ## Running the tests
@@ -89,6 +89,6 @@ To be updated.
 ## TODO
 - Upload then include UnityExport and UnityProject.
 - Details on how to stabilize and get this to run on iOS.
-- Support for multiple Unity scenes. **Multiple Unity Views / Instances are impossible**, until further updates from Unity and asmadsen (if he decides to not drop his amazing package).
+- Support for multiple Unity scenes. **Multiple Unity Views / Instances are impossible**, until further updates from Unity and asmadsen (if he decides not to drop his amazing package).
 - Make a branch and a how to build this from scratch.
 
