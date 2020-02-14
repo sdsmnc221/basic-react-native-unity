@@ -45,8 +45,8 @@ $ yarn
 
 - Here's already premade builds for up and running. Download it and unzip it.
 
-    - [**UnityExport for Android**](https://www.dropbox.com/s/5h0nef78fox0igt/UnityExport-android.zip?dl=0).
     - [**UnityExport for iOS**](https://www.dropbox.com/s/fkuncvje5w4bqpm/UnityExport-ios.zip?dl=0).
+    - [**UnityExport for Android**](https://www.dropbox.com/s/5h0nef78fox0igt/UnityExport-android.zip?dl=0).
 
 
 - Move the UnityExport folder for each platform into ios/ or android/.
@@ -64,13 +64,7 @@ $ yarn
 
 ```
 $ react-native link
-$ react-native link @asmadsen/react-native-unity-view //just in case, to make sure
-```
-- (For iOS) Install pods
-```
-$ cd ios
-$ cd pod install
-$ cd ..
+$ react-native link @asmadsen/react-native-unity-view
 ```
 
 
@@ -78,7 +72,8 @@ $ cd ..
 
 - Plug your device and make sure your system recognize it.
 
-- Start the packager *(skip for Android if you want)*.
+- Start the packager *(skip for Android if you want)*:
+
 ```
 $ react-native start
 ```
@@ -93,10 +88,49 @@ $ react-native run-android
 
 
 ### For iOS
-Argh this will be complicated.
+
+- Install pods:
+```
+$ cd ios
+$ cd pod install
+$ cd ..
+```
+
+- *(Optional)* Relink *(just in case, just to make sure)*:
+```
+$ react-native link
+$ react-native link @asmadsen/react-native-unity-view 
+```
+
+- Open the **.xcworkspace** in XCode.
+
+![Open .xcworkspace](/resources/xcworkspace.png)
+
+- Check and fix signing conflicts for both the Main Project and the Unity-iPhone Project (for Tests Target too).
+
+<p align="center">
+  <img width="auto" height="400" src="./resources/both-project.png">
+  <img width="auto" height="200" src="./resources/main-project-targets.png">
+  <img width="auto" height="200" src="./resources/unity-iphone-targets.png">
+</p>
+
+- Clean and Build the Main project for a real device, while the packager is running.
+
+![Open .xcworkspace](/resources/build.png)
+
+    - If the build succeeded but the app is not installed and launched on the device, just restart the packager, clean and rebuild project.
+    
+    - And make sure that your Apple ID works.
+
+```
+$ react-native start
+```
+
+## How to use your own UnityProject and make your own exports
+To be updated.
 
 
-## Example usage of the API and the Bridge.
+## Example usage of the API and the Bridge
 To be updated.
 
 
@@ -122,8 +156,9 @@ To be updated.
 - [x] Upload a nice demo gif.
 - [X] Upload then include downdload links for UnityExports.
 - [x] Working docs for Android.
-- [ ] Details on how to stabilize and get this to run on iOS.
+- [x] Workings docs for iOS.
 - [ ] Upload a fresh and preconfigured UnityProject.
+- [ ] Docs for UnityProject & how to export and build the project on your own.
 - [ ] Support for multiple Unity scenes. **Multiple Unity Views / Instances are impossible**, until further updates from Unity and asmadsen (if he decides not to drop his amazing package).
 - [ ] Make a branch and a how to build this from scratch.
 
