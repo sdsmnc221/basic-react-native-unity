@@ -78,6 +78,7 @@ $ react-native link @asmadsen/react-native-unity-view
 $ react-native start
 ```
 
+
 ### For Android:
 
 Gradle files are already configured. You just need to run:
@@ -126,8 +127,66 @@ $ react-native link @asmadsen/react-native-unity-view
 $ react-native start
 ```
 
-## How to use your own UnityProject and make your own exports
-To be updated.
+
+## How to use your own UnityProject
+
+- Basically, you can just follow [**the guide from asmadsen**](https://github.com/asmadsen/react-native-unity-view). Or keep reading.
+
+
+### Create a new Unity Project
+
+- Inside the unity/ folder, create your own Unity Project. So it will look like this:
+
+<p align="center">
+  <img width="auto" height="400" src="./resources/create-unity-project.png">
+</p>
+
+<p align="center">
+    <i>(The folder's name doesn't matter.)</i>
+</p>
+    
+- [Here's a starter basic Unity Project](https://github.com/sdsmnc221/basic-unity), go ahead and clone it if you want:
+
+```
+$ cd unity
+$ git clone https://github.com/sdsmnc221/basic-unity.git UnityProject
+$ cd ..
+```
+
+- Open the project in **Unity 2019.3+**. 
+
+
+### Import react-native-unity-view into the project
+
+- Download my [**react-native-unity-view-bridge package**](/resources/react-native-unity-view-bridge.unitypackage) (which already includes all of the scripts from [asmadsen](https://github.com/asmadsen/react-native-unity-view) and [f111fei](https://github.com/f111fei/react-native-unity-view)).
+
+- On the Project Panel, Assets > Import Package > Custom Package... > Import the package:
+
+<p align="center">
+  <img width="auto" height="250" src="./resources/import-unity-package.png">
+  <img width="auto" height="250" src="./resources/import-unity-package-2.png">
+</p>
+
+- You will now have a ReactNative Menu!
+
+<p align="center">
+  <img width="auto" height="auto" src="./resources/old-menu.png">
+</p>
+
+<p align="center">
+    <i>(From this...)</i>
+</p>
+
+<p align="center">
+  <img width="auto" height="auto" src="./resources/new-menu.png">
+</p>
+
+<p align="center">
+    <i>(...to this.)</i>
+</p>
+
+
+### Configure the Unity Project
 
 
 ## Example usage of the API and the Bridge
