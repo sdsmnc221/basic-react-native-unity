@@ -1,6 +1,5 @@
 # Config for iOS
 
-
 ## **Cleanup:**
 
 - Delete the **Unity-iPhone.xcodeproj** inside your Xcode workspace.
@@ -104,8 +103,18 @@ int main(int argc, char * argv[]) {
 
 ## **Rerun**:
 
-- Clean the build.
+- IF Build succeeded, but the app isn't installed nor launched on the device:
 
-- Restart packager.
+    - *(Optional)* Unplug and replug the iPhone.
 
-- Rebuild.
+    - *(Optional)* Close and reopen Xcode workspace.
+
+    - Delete the app on the device.
+
+    - Clean the build.
+
+    - Restart the packager.
+
+    - Rebuild.
+
+*Really this can happen frequently if you re-export your Project... And I promise this has got to be something with the Xcode build and packager. If this isn't working just repeat. The 3 last steps can be executed in any orders, until it works haha.*

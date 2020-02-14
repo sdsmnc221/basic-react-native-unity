@@ -119,7 +119,7 @@ $ react-native link @asmadsen/react-native-unity-view
 
 ![Open .xcworkspace](/resources/build.png)
 
-- If the build succeeded but the app is not installed and launched on the device, just restart the packager, clean and rebuild project. And make sure that your Apple ID works.
+- If the build succeeded but the app is not installed and launched on the device, just restart the packager, maybe delete the app on the iPhone, then clean and rebuild project. And make sure that your Apple ID works.
 
 ```
 $ react-native start
@@ -329,9 +329,228 @@ $ react-native start
 
     - OR here, in case build failed, or you need illustrated guide: [README-ios.md](README-ios.md).
 
+- IF Build succeeded, but the app isn't installed nor launched on the device:
 
-## Example usage of the API and the Bridge
-To be updated.
+    - *(Optional)* Unplug and replug the iPhone.
+
+    - *(Optional)* Close and reopen Xcode workspace.
+
+    - Delete the app on the device.
+
+    - Clean the build.
+
+    - Restart the packager.
+
+    - Rebuild.
+
+*Really this can happen frequently if you re-export your Project... And I promise this has got to be something with the Xcode build and packager. If this isn't working just repeat. The 3 last steps can be executed in any orders, until it works haha.*
+
+
+## Example usage of the API and the React Native <-> Unity Bridge
+
+- Want a Bridge on any scene ?
+
+<p align="center">
+  <img width="384" height="auto" src="./resources/demo02.gif">
+</p>
+
+- For the full API, please refer to [asmadsen's docs](https://github.com/asmadsen/react-native-unity-view).
+
+- In my case, I based on his docs to create an example of bridge, with:
+
+    - On Unity side, a C# script: [RNUBridge Component](resources/RNUBridge.cs).
+        - In your Unity scene, tag the Main Camera as MainCamera.
+        - Add the RNUBridge Component to any GameObject.
+
+        <p align="center">
+            <img width="300" height="auto" src="./resources/rnubridge.png">
+        </p> 
+
+    - On React Native side, a Javascript script: [UnityScreen](src/screens/UnityScreen/index.js).
+
+
+### Bridge's keypoints: 
+
+- UnityMessageManager in Unity:
+
+<p align="center">
+    <img width="300" height="auto" src="./resources/unitymessagemanager.png">
+</p>
+
+- UnityModule in React Native:
+
+```
+// src/screens/UnityScreen/index.js
+// UnityView is the React Native Component to display the Unity scene
+
+import UnityView, { UnityModule } from '@asmadsen/react-native-unity-view';
+```
+
+### Boot up the UnityMessageManager in Unity:
+
+```
+// RNUBridge.cs
+
+void Awake()
+{
+    UnityMessageManager.Instance.OnRNMessage += onMessage;
+}
+
+void OnDestroy()
+{
+    UnityMessageManager.Instance.OnRNMessage -= onMessage;
+}
+
+void onMessage(MessageHandler message)
+{
+    var data = message.getData<string>();
+
+    // do what you want here.
+}
+```
+
+### Unity: Implement commands listener, and then execute received commands with onMessage
+
+- I implemented 3 simple commands:
+
+    - to toggle the GameObject's rotation; 
+
+    - to change the Main Camera's background color; 
+
+    - and to say Hi from Unity whenever you want *(but in my case, whenever the UnityScreen is mounted, hence the command's name is 'OnStart')*:
+
+```
+// RNUBridge.cs
+
+void onMessage(MessageHandler message)
+{
+    var data = message.getData<string>();
+    Debug.Log("onMessage:" + data);
+
+    switch (data)
+    {
+        case "ToggleRotate":
+            doRotate = !doRotate;
+            UnityMessageManager.Instance.SendMessageToRN("Now it is " + (doRotate ? "" : "not ") + "rotating.");
+            message.send(new { CallbackMsg = "JSON" +
+                ": Rotate " + (doRotate ? "ON" : "OFF") });
+            break;
+        case "OnStart":
+            UnityMessageManager.Instance.SendMessageToRN("Hello from Unity!");
+            break;
+        case "ChangeBGColor":
+            doChangeBGColor = true;
+            break;
+        default:
+            break;
+    }
+}
+
+// And some other code in FixedUpdate() to make rotation and color changing work.
+```
+    
+- Unity, after receiving commands from React Native, can execute it and send a message string to React Native:
+
+```
+UnityMessageManager.Instance.SendMessageToRN("some string");
+```
+
+- Or a callback message (message sent after executing the command) in JSON format:
+
+```
+message.send(new { CallbackMsg = "JSON" });
+```
+
+### React Native: Implement commands sender and callback receiver from Unity
+
+- First we have the bridge function, to send message and to receive callback message:
+
+```
+// src/screens/UnityScreen/index.js
+
+const bridge = (data, cb = null) => {
+
+    // to receive callback message  
+
+    if (!cb) cb = (data) => {
+        console.log(data);
+    }
+
+    // to send/post command (the name is not important, but the data property must match the command name implemented in the C# script)
+
+    UnityModule.postMessageToUnityManager({
+        name: data,
+        data: data,
+        callBack: cb
+    });
+}
+```
+
+- Also the onUnityMessage, to receive the message string:
+
+```
+// src/screens/UnityScreen/index.js
+
+const onUnityMessage = (message) => {
+    console.log(message);
+};
+
+// attach it to the <UnityView />
+
+UnityView
+    onMessage={onUnityMessage}
+    onUnityMessage={onUnityMessage}
+/>
+
+```
+
+- Using the bridge function:
+
+    - When the screen is mounted or focused:
+
+    ```
+    useEffect(() => {
+        bridge('OnStart');
+        
+        if (isFocused) bridge('OnStart');
+    }, [])
+    ```
+
+    - 2 simple buttons to send commands to the Unity Scene (either toggle rotation or changing the scene’s background color):
+
+    ```
+    <TouchableOpacity onPress={() => bridge('ToggleRotate')}>
+        <Text>Toggle Rotation</Text>
+    </TouchableOpacity>
+
+    <TouchableOpacity onPress={() => bridge('ChangeBGColor')}>
+        <Text>Change Background Color</Text>
+    </TouchableOpacity>
+    ```
+
+    - I used the state to display Unity's messages (for instance I only display the message for the Toggle Rotation command).
+
+### Others:
+
+- To persist the Unity screen:
+
+```
+const UnityScreen = ({navigation}) => {
+  navigation.setOptions({
+    unmountOnBlur: true
+  });
+
+  return (<View> </View>)
+}
+```
+
+- You can see the debug log on your terminal or your React Native Debugger's console:
+
+<p align="center">
+    <img width="500" height="auto" src="./resources/react-native-debugger.png">
+</p>
+
+- Well that's it, hope you can do more!
 
 
 ## Built With
@@ -361,6 +580,6 @@ To be updated.
 - [x] Docs for UnityProject & how to export and build the project on your own in:
     - [x] Android.
     - [x] iOS.
-- [ ] Docs for Bridge.
-- [ ] Support for multiple Unity scenes. **Multiple Unity Views / Instances are impossible**, until further updates from Unity and asmadsen (if he decides not to drop his amazing package).
+- [x] Docs for Bridge.
+- [ ] Support for multiple Unity scenes. **Multiple Unity Views / Instances are impossible**, until further updates from Unity and asmadsen (if he decides not to drop his project haha).
 
