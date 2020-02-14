@@ -564,11 +564,77 @@ const UnityScreen = ({navigation}) => {
 
 - Tested on both iOS and Android.
 
-- Beware of iOS build failed error **undefined symbol _onUnityMessage** or **undefined symbol _UnityMessageManager_onUnityMessage**, please refer to: [README-ios.md](README-ios.md).
+- Import this custom package into your Unity Project: [multiple-scenes.unitypackage](resources/multiple-scenes.unitypackage). It comes with:
 
-<p align="center">
-    <img width="auto" height="auto" src="./resources/error-ios.png">
-</p>
+    - a SceneLoader prefab, to change scene with a simple crossfade animation;
+
+    - a SceneLoader Component, with methods to change scenes;
+
+    - a SceneButton prefab, to change scenes within Unity;
+
+    - and an update version of the RNUBridge Component (new command ChangeScene added).
+
+- I also updated the UnityScreen javascript code with a new bridge (to have a new button to call the ChangeScene command from React Native).
+
+- **How to use it:**
+
+    - You need to have **at least 2 scenes** (well 2 scenes are good, since here in my test I have exactly 2 scenes, so my code is only adapted for switching between 2 scenes sorry haha.)
+
+    - For each and every scenes, add the SceneLoader prefab into the Scene / Hierarchy.
+
+    - Drag that SceneLoader gameobject into the SceneLoader slot in RNUBridge.
+
+    <p align="center">
+        <img width="500" height="auto" src="./resources/drag-scene-loader.png">
+    </p>
+
+    - Open your Build Settings (Shift Cmd B), add all of your scenes in your order of choice.
+
+    <p align="center">
+        <img width="500" height="auto" src="./resources/add-scenes.png">
+    </p>
+
+    - Re-export your project for Android or iOS and then re-run the React Native App.
+
+- **How to use the SceneButton prefab, to change scenes from within Unity (not using bridge):**
+
+    - Already having the SceneLoader in the scene.
+    
+    - Add the SceneBtn prefab into the Scene / Hierarchy. You may need to tweak its position so it is visible (it will be visible on 16:9 Portrait / 9:16 screen though).
+
+    <p align="center">
+        <img width="400" height="auto" src="./resources/add-scene-btn.png">
+    </p>
+
+    - Select (Hierarchy) / SceneBtn / Button > Button Componenent, config the OnClick() setting like so:
+
+    <p align="center">
+        <img width="400" height="auto" src="./resources/config-scene-btn.png">
+    </p>
+
+    <p align="center">
+        <i>(Make sure to choose the SceneLoader gameobject from THE SCENE, not from the Assets.)</i>
+    </p>
+
+    <p align="center">
+        <img width="400" height="auto" src="./resources/select-scene-loader.png">
+    </p>
+
+    - That's it. Now you can crossfade between scene from within Unity.
+
+    <p align="center">
+        <img width="auto" height="400" src="./resources/demo04.gif">
+    </p>
+
+- **Results:**
+
+    - Works like a charm on Android.
+
+    - For iOS, beware of iOS build failed error **undefined symbol _onUnityMessage** or **undefined symbol _UnityMessageManager_onUnityMessage**, please refer to: [README-ios.md](README-ios.md).
+
+    <p align="center">
+        <img width="auto" height="auto" src="./resources/error-ios.png">
+    </p>
 
 
 ## Built With
@@ -599,5 +665,6 @@ const UnityScreen = ({navigation}) => {
     - [x] Android.
     - [x] iOS.
 - [x] Docs for Bridge.
-- [ ] Support for multiple Unity scenes. **Multiple Unity Views / Instances are impossible**, until further updates from Unity and asmadsen (if he decides not to drop his project haha).
+- [x] Support for multiple Unity scenes. **Multiple Unity Views / Instances are impossible**, until further updates from Unity and asmadsen (if he decides not to drop his project haha).
+- [x] Docs for multiple Unity scenes.
 
