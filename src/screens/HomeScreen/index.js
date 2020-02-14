@@ -21,10 +21,6 @@ const HomeScreen = () => {
             source={{uri: 'https://media.giphy.com/media/hWXisyrFbbCm293C5F/giphy.gif'}}
             style={styles.img}
           />
-        <View>
-            <Text style={styles.link} onPress={() => Linking.openURL('https://drive.google.com/open?id=14EqOdDypl1hAeYKmn4fHcsWSJ8zVQl0v')}>RNUnity Drive (including all the video demos).</Text>
-            <Text style={styles.link} onPress={() => Linking.openURL('https://drive.google.com/open?id=1EvvVOTXbEI_U2o9pRqAeRgp8OczOpScpAaxrfNuRTsg')}>R&D Doc about Integration of Unity into React Native.</Text>
-        </View>
       </View>
   );
 };
