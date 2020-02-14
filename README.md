@@ -128,7 +128,7 @@ $ react-native start
 ```
 
 
-## How to use your own UnityProject
+## How to use your own Unity Project
 
 - Basically, you can just follow [**the guide from asmadsen**](https://github.com/asmadsen/react-native-unity-view). Or keep reading.
 
@@ -156,7 +156,7 @@ $ cd ..
 - Open the project in **Unity 2019.3+**. 
 
 
-### Import react-native-unity-view into the project
+### Import react-native-unity-view into the Unity Project
 
 - Download my [**react-native-unity-view-bridge package**](/resources/react-native-unity-view-bridge.unitypackage) (which already includes all of the scripts from [asmadsen](https://github.com/asmadsen/react-native-unity-view) and [f111fei](https://github.com/f111fei/react-native-unity-view)).
 
@@ -188,6 +188,109 @@ $ cd ..
 
 ### Configure the Unity Project
 
+- Open the Player Settings (Shift Cmd B > Player Settings).
+
+- Change Product Name to the name of the React Native Xcode project **(ios/${XcodeProjectName}.xcodeproj)**:
+
+<p align="center">
+  <img width="400" height="auto" src="./resources/xcodeproj.png">
+  <img width="400" height="auto" src="./resources/productname-unity.png">
+</p>
+
+- Android configs:
+
+<p align="center">
+  <img width="auto" height="auto" src="./resources/auto-graphics-api-android.png">
+</p>
+
+<p align="center">
+    <i>(Auto Graphics API unchecked.)</i>
+</p>
+
+<p align="center">
+  <img width="auto" height="auto" src="./resources/sdk-android.png">
+</p>
+
+<p align="center">
+    <i>(Android SDK version.)</i>
+</p>
+
+<p align="center">
+  <img width="auto" height="auto" src="./resources/configs-android.png">
+</p>
+
+<p align="center">
+    <i>(Other configs: IL2CPP, .NET 4.x, ARM64 checked.)</i>
+</p>
+
+- iOS configs:
+
+<p align="center">
+  <img width="auto" height="auto" src="./resources/auto-graphics-api-ios.png">
+</p>
+
+<p align="center">
+    <i>(Auto Graphics API checked.)</i>
+</p>
+
+<p align="center">
+  <img width="auto" height="auto" src="./resources/signing-ios.png">
+</p>
+
+<p align="center">
+    <i>(Identification configs (correctly config your signing team ID and Automatically Sign checked.)</i>
+</p>
+
+
+### Export the Unity Project
+
+- You can now export your project via the menu (not the Build Settings):
+
+<p align="center">
+  <img width="auto" height="auto" src="./resources/new-menu.png">
+</p>
+
+<p align="center">
+    <i>(<b>Export Android (Unity...)</b> or <b>Export iOS (Unity...)</b> .)</i>
+</p>
+
+- The exported builds will be placed in a folder called UnityExport inside either the android/ or ios/ folder.
+
+<p align="center">
+  <img width="400" height="auto" src="./resources/unity-export-ios.png">
+</p>
+
+<p align="center">
+  <img width="400" height="auto" src="./resources/unity-export-android.png">
+</p>
+
+- Wait until Build Successful.
+
+<p align="center">
+  <img width="400" height="auto" src="./resources/build-successful.png">
+</p>
+
+- **ATTENTION: Every time changes are made inside the Unity Project, no matter which change is it, please re-export the project.**
+
+- **Loading more than one instance of the Unity runtime is not supported.** This is a crucial limitation, as mentioned in [here, from the Unity Blog](https://forum.unity.com/threads/using-unity-as-a-library-in-native-ios-android-apps.685195/), and also with the react-native-unity-view package, there are only one UnityExport. I still don’t know whether we can run multiple Unity scenes or views inside a single React Native App. For scenes, perhaps, I speculate creating a SceneManager inside the Unity Project (will test it laster). But for views (as in multiple instances of Unity), maybe it is not yet possible.
+
+
+### Config and Run on Android
+
+- Normally all of the Gradle files in this repo are preconfigured.
+    - If you're interested in the configs, please refer to [asmadsen's docs](https://github.com/asmadsen/react-native-unity-view).
+    - OR just go look at [**android/settings.gradle**](android/settings.gradle), [**android/build.gradle**](android/build.gradle), [**android/app/build.gradle**](android/app/build.gradle) where there are the comment *// unity*.
+
+- *(Optional)* Make sure that **the minSdkVersion for everywhere inside this whole React Native project is at least 19**. *(You can run a search of 'minSdkVersion' inside VS Code to check. Sometimes it isn't always 19 eveyrwhere, sometimes. But not in this repo...)*
+
+- Plug in your Android device and run:
+
+```
+$ react-native run-android
+```
+
+### Config and Run on iOS
+
 
 ## Example usage of the API and the Bridge
 To be updated.
@@ -216,8 +319,9 @@ To be updated.
 - [X] Upload then include downdload links for UnityExports.
 - [x] Working docs for Android.
 - [x] Workings docs for iOS.
-- [ ] Upload a fresh and preconfigured UnityProject.
-- [ ] Docs for UnityProject & how to export and build the project on your own.
+- [x] Upload a fresh UnityProject.
+- [ ] Docs for UnityProject & how to export and build the project on your own in:
+    - [x] Android.
+    - [ ] iOS.
 - [ ] Support for multiple Unity scenes. **Multiple Unity Views / Instances are impossible**, until further updates from Unity and asmadsen (if he decides not to drop his amazing package).
-- [ ] Make a branch and a how to build this from scratch.
 
