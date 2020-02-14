@@ -327,7 +327,7 @@ $ react-native start
 
     - If you're interested in the configs, please refer to [asmadsen's docs](https://github.com/asmadsen/react-native-unity-view).
 
-    - OR here, in case build failed, or you need illustrated guide: [README-ios.md](README-ios.md).
+    - OR here, in case build failed, errors, or you need a detailed illustrated guide: [README-ios.md](README-ios.md).
 
 - IF Build succeeded, but the app isn't installed nor launched on the device:
 
@@ -551,6 +551,24 @@ const UnityScreen = ({navigation}) => {
 </p>
 
 - Well that's it, hope you can do more!
+
+## Multiple Unity Scenes
+
+<p align="center">
+  <img width="384" height="auto" src="./resources/demo03.gif">
+</p>
+
+<p align="center">
+    <a href="https://www.dropbox.com/s/yic0qr90kzyyy8b/demo-app-004.mp4?dl=0" target="_blank"><i>Full Video Demo, since I can't convert it into a full GIF</i></a>
+</p>.
+
+- Tested on both iOS and Android.
+
+- Beware of iOS build failed error **undefined symbol _onUnityMessage** or **undefined symbol _UnityMessageManager_onUnityMessage**, please refer to: [README-ios.md](README-ios.md).
+
+<p align="center">
+    <img width="auto" height="auto" src="./resources/error-ios.png">
+</p>
 
 
 ## Built With

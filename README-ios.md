@@ -89,7 +89,7 @@ int main(int argc, char * argv[]) {
 }
 ```
 
-- In the Unity Project, for the **UnityMessageManager.cs** (add **UnityMessageManager.**, but if you import this script from my .unitypackage from above, just skip), else, edit like so and re-export the Unity Project:
+- In the Unity Project, if you get error **undefined symbol _onUnityMessage**, in **UnityMessageManager.cs** (add **UnityMessageManager.**, but if you import this script from my .unitypackage from above, just skip), else, edit like so and re-export the Unity Project:
 
 <p align="center">
     <img width="300" height="auto" src="./resources/unitymessagemanager.png">
@@ -100,6 +100,21 @@ int main(int argc, char * argv[]) {
     UnityMessageManager.onUnityMessage(message);
 #endif
 ```
+
+- OR if you get error **undefined symbol _UnityMessageManager_onUnityMessage**:
+
+<p align="center">
+    <img width="auto" height="auto" src="./resources/error-ios.png">
+</p>
+
+Just go and re-edit like so, then re-export the project, clean then rebuild:
+
+```
+#if UNITY_IOS && !UNITY_EDITOR
+    onUnityMessage(message);
+#endif
+```
+
 
 ## **Rerun**:
 

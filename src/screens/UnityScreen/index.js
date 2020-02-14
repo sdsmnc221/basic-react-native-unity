@@ -66,6 +66,9 @@ const UnityScreen = ({navigation}) => {
           <TouchableOpacity style={styles.button} onPress={() => bridge('ChangeBGColor')}>
             <Text style={styles.center}>Change Background Color</Text>
           </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => bridge('ChangeScene')}>
+            <Text style={styles.center}>Change Scene</Text>
+          </TouchableOpacity>
         </View>
       </View>
   );
