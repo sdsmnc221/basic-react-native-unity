@@ -55,15 +55,15 @@ const UnityScreen = ({navigation}) => {
         <Text style={styles.bold}>Unity</Text>
         {/* {createUnityView()} */}
         <View style={styles.log}>
-          <Text style={styles.center}>Bridge Log: {unityMessage || 'none'}</Text>
-          <Text style={styles.center}>Unity Message Callback: {unityMessageCb || 'none'}</Text>
+          <Text style={styles.center}>Bridge Log: {unityMessage || 'none'}.</Text>
+          <Text style={styles.center}>Unity Message Callback: {unityMessageCb || 'none'}.</Text>
         </View>
         <View style={styles.controller}>
           <TouchableOpacity style={styles.button} onPress={() => bridge('ToggleRotate')}>
-            <Text style={styles.center}>Toggle Rotation</Text>
+            <Text style={styles.center}>Toggle Rotation.</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => bridge('ChangeBGColor')}>
-            <Text style={styles.center}>Change Background Color</Text>
+            <Text style={styles.center}>Change Background Color.</Text>
           </TouchableOpacity>
         </View>
       </View>
